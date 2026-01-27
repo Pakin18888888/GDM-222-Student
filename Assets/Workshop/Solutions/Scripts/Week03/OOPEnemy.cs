@@ -10,10 +10,6 @@ namespace Solution
             GetRemainEnergy();
         }
 
-        public void Attack(OOPPlayer _player)
-        {
-            _player.energy -= AttackPoint;
-            Debug.Log("player is energy " + _player.energy);
-        }
+       
     }
 }

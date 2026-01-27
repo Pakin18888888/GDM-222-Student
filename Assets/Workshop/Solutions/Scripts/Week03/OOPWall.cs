@@ -3,31 +3,12 @@ using UnityEngine;
 namespace Solution
 {
 
-    public class OOPWall : Identity
+    public class OOPWall : MonoBehaviour
     {
         public int Damage;
         public bool IsIceWall;
 
-        private void Start()
-        {
-            IsIceWall = Random.Range(0, 100) < 20 ? true : false;
-            if (IsIceWall)
-            {
-                GetComponent<SpriteRenderer>().color = Color.blue;
-            }
-        }
-        public override void Hit(Identity hitBy)
-        {
-            if (IsIceWall)
-            {
-                mapGenerator.playerScript.TakeDamage(Damage, IsIceWall);
-            }
-            else
-            {
-                mapGenerator.playerScript.TakeDamage(Damage);
-            }
-            mapGenerator.mapdata[positionX, positionY] = null;
-            Destroy(gameObject);
-        }
+       
+        
     }
 }
