@@ -1,34 +1,59 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Solution {
     public class Inventory : MonoBehaviour
     {
+        public Dictionary<ItemData,int> inventory = new Dictionary<ItemData, int>();
 
-        // เพิ่มไอเท็ม
+        // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
         public void AddItem(ItemData item, int amount)
         {
-            
+            if (inventory.ContainsKey(item))
+            {
+                inventory[item] += amount;
+            }
+            else
+            {
+                inventory.Add(item,amount);
+            }
+            Debug.Log("Added " + amount +" " + item.ItemName + "Total : " + inventory[item]);
         }
 
-        // ลบไอเท็ม
+        // ลบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
         public void UseItem(ItemData item, int amount)
         {
-            
+            if (HasItem(item, amount))
+            {
+                inventory[item] -= amount;
+                if(inventory[item] <= 0)
+                {
+                    inventory.Remove(item);
+                    Debug.Log($"Remove {item.ItemName} form Inventory");
+                }
+                else
+                {
+                    Debug.Log("Remove " + amount + " " + item.ItemName + " totle " + inventory[item]);
+                }
+            }
+            else
+            {
+                Debug.Log("Cannot remove " + item.ItemName + ". not found");
+            }
         }
         public bool HasItem(ItemData item, int amount)
         {
-            //2. ตรวจสอบว่ามีไอเท็มนี้ในคลังหรือไม่ และมีจำนวนเพียงพอหรือไม่
-            return true;
+            return inventory.ContainsKey(item) && inventory[item] >= amount;
         }
-        // ตรวจสอบจำนวนไอเท็ม
+        // ๏ฟฝ๏ฟฝวจ๏ฟฝอบ๏ฟฝำนวน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
         public int GetItemCount(ItemData item)
         {
            
             return 0;
         }
 
-        // แสดงรายการทั้งหมดในคลัง
+        // ๏ฟฝสด๏ฟฝ๏ฟฝ๏ฟฝยก๏ฟฝรท๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝในค๏ฟฝัง
         public void PrintInventory()
         {
            

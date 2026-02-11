@@ -56,13 +56,13 @@ namespace Solution
             if (inventory.HasItem(KeyItemFireStorm, 1))
             {
                 inventory.UseItem(KeyItemFireStorm, 1);
-                OOPEnemy[] enemies = UtilitySortEnemies.SortEnemiesByRemainningEnergy1(mapGenerator);
+                OOPEnemy[] enemies = UtilitySortEnemies.SortEnemiesByRemainningEnergy2(mapGenerator);
                 int count = 3;
-                if (count > enemies.Length)
+                if(count > enemies.Length)
                 {
                     count = enemies.Length;
                 }
-                for (int i = 0; i < count; i++)
+                for(int i = 0; i < count; i++)
                 {
                     enemies[i].TakeDamage(10);
                 }
